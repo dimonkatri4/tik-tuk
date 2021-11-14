@@ -1,4 +1,4 @@
-import {trendingAPI} from "../app/api";
+import {trendingAPI} from "../api/api";
 
 const SET_TRENDING_FEED = '/trending/SET_TRENDING_FEED'
 

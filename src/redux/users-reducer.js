@@ -1,4 +1,4 @@
-import {userAPI} from "../app/api";
+import {userAPI} from "../api/api";
 
 const SET_USERS_FEED = '/users/SET_USERS_FEED';
 const SET_USERS_INFO = '/users/SET_USERS_INFO';
