@@ -1,0 +1,31 @@
+.profilePage {
+    display: flex;
+    justify-content: center;
+    }
+
+.profileInfo {
+    align-self: center;
+    margin-left: 10px;
+}
+.nickname {
+    font-size: 1.6vw;
+    color: #088dcd;
+    text-transform: capitalize
+}
+.signature {
+    font-size: 1vw;
+    color: #404040;
+    word-break: break-word;
+}
+
+.status {
+    display: flex;
+    margin-top: 10px;
+}
+
+.status div {
+    padding-right: 10px;
+}
+.status span {
+    font-weight: bold;
+}

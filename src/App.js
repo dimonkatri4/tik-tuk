@@ -1,31 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import {requestTrendingFeed} from "./redux/trending-reducer";
 import React from "react";
-import {connect} from "react-redux";
-import {requestUsersInfo} from "./redux/users-reducer";
+import Header from "./components/Header/Header";
+import MainContent from "./components/MainContent/MainContent";
+import Container from "@mui/material/Container";
 
-function App({requestUsersInfo}) {
+const App = () => {
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button onClick={requestUsersInfo}>Click</button>
-      </header>
-    </div>
-  );
+    return (
+        <div className="appWrapper">
+            <Container maxWidth="lg">
+                <Header/>
+                <MainContent/>
+            </Container>
+        </div>
+    );
 }
 
-export default connect(null, {requestUsersInfo})(App);
+export default App;
