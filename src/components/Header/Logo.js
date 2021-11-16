@@ -1,5 +1,5 @@
 import React from 'react'
-import style from "./logo.module.css"
+import style from "./header.module.css"
 import logo from "../../images/logo.png"
 import {NavLink} from "react-router-dom";
 
@@ -9,6 +9,7 @@ const Logo = () => {
             <NavLink to="/" >
                 <img src={logo}/>
             </NavLink>
+            <NavLink to="/" >Tik-Tuk</NavLink>
         </div>
     )
 }

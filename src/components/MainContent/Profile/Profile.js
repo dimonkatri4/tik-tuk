@@ -2,11 +2,10 @@ import React from "react";
 import style from "./profile.module.css"
 import CircularProgress from "@mui/material/CircularProgress";
 import Avatar from "@mui/material/Avatar";
-import {useParams} from "react-router-dom";
 
 
-const Profile = ({profile,userFeed}) => {
-    if (!profile){ return <div className={style.profilePage}><CircularProgress/></div> }
+const Profile = ({profile,userFeed, isFetching}) => {
+    if (!profile || isFetching){ return <div className={style.profilePage}><CircularProgress/></div> }
     return(
     <div className={style.profilePage}>
         <div className={style.profileAvatar}>

@@ -3,6 +3,8 @@ import style from "./trendingFeed.module.css";
 import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMusic} from "@fortawesome/free-solid-svg-icons";
 
 const TrendingFeed = ({trending}) => {
     if (!trending) {
@@ -46,7 +48,8 @@ const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, v
                     </div>
                     <div className={style.postText}>{postText}</div>
                     <div className={style.musicInfo}>
-                        <span>{musicName} - </span>
+                        <FontAwesomeIcon icon={faMusic}/>
+                        <span> {musicName} - </span>
                         <span>{musicAuthor}</span>
                     </div>
                 </div>

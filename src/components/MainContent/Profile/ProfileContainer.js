@@ -23,7 +23,8 @@ const ProfileContainer = (props) => {
 
 const mapStateToProps = (state) => ({
     profile: state.users.userInfo,
-    userFeed: state.users.userFeed
+    userFeed: state.users.userFeed,
+    isFetching: state.users.isFetching
 })
 
 export default compose(

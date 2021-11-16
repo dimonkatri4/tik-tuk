@@ -1,0 +1,32 @@
+.logo img {
+    width: 50px;
+    cursor: pointer;
+}
+.logo {
+    font-family: 'Special Elite', cursive;
+    font-size: 20pt;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: black;
+    padding-right: 5px;
+}
+
+
+.headerButtons a {
+    font-size: 18pt;
+    color: black;
+    padding-right: 20px;
+}
+
+.headerButtons a:hover, .logo a:hover {
+    color: darkblue;
+}
+
+.headerButtons a.active {
+    color: bisque;
+}
