@@ -1,0 +1,41 @@
+.trendingPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.authorPhoto {
+    padding-right: 10px;
+}
+.postInfo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+
+}
+
+.authorName {
+    font-weight: bold;
+    font-size: 1vw;
+    color: black;
+    text-decoration: none;
+}
+.authorNickName{
+    font-size: 0.8vw;
+    font-weight: 300;
+}
+.postText {
+    width: 24vw;
+    font-weight: 700;
+}
+.musicInfo {
+    width: 15vw;
+    font-weight: 400;
+}
+.post {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgray;
+}
+.video {
+    text-align: center;
+}

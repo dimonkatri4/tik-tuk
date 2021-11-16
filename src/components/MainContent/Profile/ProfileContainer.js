@@ -2,16 +2,20 @@ import React, {useEffect} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {requestUsersFeed, requestUsersInfo} from "../../../redux/users-reducer";
+import {compose} from "redux";
+import {useParams} from "react-router-dom";
 
 
 const ProfileContainer = (props) => {
 
+    let {userId} = useParams();
+
     useEffect(()=> {
-        props.requestUsersInfo()
+        userId ? props.requestUsersInfo(userId) : props.requestUsersInfo()
     },[])
 
     useEffect(()=> {
-        props.requestUsersFeed()
+        userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
     },[])
 
     return <Profile {...props} />
@@ -22,4 +26,6 @@ const mapStateToProps = (state) => ({
     userFeed: state.users.userFeed
 })
 
-export default connect(mapStateToProps,{requestUsersInfo,requestUsersFeed})(ProfileContainer)
+export default compose(
+    connect(mapStateToProps,{requestUsersInfo,requestUsersFeed}),
+)(ProfileContainer)

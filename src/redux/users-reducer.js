@@ -26,13 +26,13 @@ const usersReducer = (state = initialState, action) => {
 export const setUsersFeed = (userFeed) => ({type:SET_USERS_FEED, userFeed});
 export const setUsersInfo = (userInfo) => ({type:SET_USERS_INFO, userInfo});
 
-export const requestUsersFeed = () => async (dispatch) => {
-    const data = await userAPI.getUserFeed();
+export const requestUsersFeed = (id) => async (dispatch) => {
+    const data = await userAPI.getUserFeed(id);
     dispatch(setUsersFeed(data));
 }
 
-export const requestUsersInfo = () => async (dispatch) => {
-    const data = await userAPI.getUserInfo();
+export const requestUsersInfo = (id) => async (dispatch) => {
+    const data = await userAPI.getUserInfo(id);
     dispatch(setUsersInfo(data));
 }
 

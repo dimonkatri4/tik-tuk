@@ -5,15 +5,16 @@ const instance = axios.create({
     withCredentials: true,
     headers: {
         'x-rapidapi-host': 'tiktok33.p.rapidapi.com',
-        'x-rapidapi-key': '3c6056bf3fmshc034881d310ceb2p1396b9jsne10f344201bc'
+        //'x-rapidapi-key': '3c6056bf3fmshc034881d310ceb2p1396b9jsne10f344201bc'
+        'x-rapidapi-key': 'c1257dc04cmshd888bbb072eb770p1f2b8ajsnbf16d4cd1d66'
     }
 })
 export const userAPI = {
-    getUserFeed() {
-        return instance.get(`user/feed/dave.xp`).then(response => response.data)
+    getUserFeed(id="dave.xp") {
+        return instance.get(`user/feed/${id}`).then(response => response.data)
     },
-    getUserInfo() {
-        return instance.get(`user/info/dave.xp`).then(response => response.data)
+    getUserInfo(id="dave.xp") {
+        return instance.get(`user/info/${id}`).then(response => response.data)
     }
 }
 
