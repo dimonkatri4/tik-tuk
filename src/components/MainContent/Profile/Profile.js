@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import style from "./profile.module.css"
 import CircularProgress from "@mui/material/CircularProgress";
 import Avatar from "@mui/material/Avatar";
@@ -6,6 +6,22 @@ import Pagination from "@mui/material/Pagination";
 
 
 const Profile = ({profile, userFeed, isFetching, trending}) => {
+
+
+    let pageSize = 6; //размер подмассива
+    let pageCount = Math.ceil((trending.length+1) / pageSize);
+    let subarray = []; //массив в который будет выведен результат.
+    for (let i = 0; i <Math.ceil(trending.length/pageSize); i++){
+        subarray[i] = trending.slice((i*pageSize), (i*pageSize) + pageSize);
+    }
+    const [page, setPage] = useState(1);
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    }
+
+
+
     if (!profile || isFetching) {
         return <div className={style.profileUserInfo}><CircularProgress/></div>
     }
@@ -29,13 +45,17 @@ const Profile = ({profile, userFeed, isFetching, trending}) => {
                 </div>
             </div>
             {!trending ? <CircularProgress/> :
+                <div>
                 <div className={style.profilePosts}>
-                    {trending.map(t => <ProfilePost
+                    {subarray[page-1].map(t => <ProfilePost
                         videoUrl={t.videoUrl}
                         cover={t.covers.default}
                     />)}
                 </div>
+                    <Pagination count={pageCount} page={page} onChange={handleChange} />
+                </div>
             }
+
         </div>
     )
 }
