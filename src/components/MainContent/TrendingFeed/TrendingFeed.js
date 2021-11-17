@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import style from "./trendingFeed.module.css";
 import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -6,7 +6,9 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMusic} from "@fortawesome/free-solid-svg-icons";
 
+
 const TrendingFeed = ({trending}) => {
+
     if (!trending) {
         return <div><CircularProgress/></div>
     }
@@ -22,13 +24,38 @@ const TrendingFeed = ({trending}) => {
                 musicAuthor={t.musicMeta.musicAuthor}
                 videoUrl={t.videoUrl}
                 userId={t.authorMeta.id}
+                cover={t.covers.default}
             />)
         }
     </div>
 }
 
 
-const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, videoUrl, userId}) => {
+const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, videoUrl, userId, cover}) => {
+
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        let options = {
+            rootMargin: "0px",
+            threshold: [0.25, 0.75]
+        };
+        let handlePlay = (entries) => {
+              entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    videoRef.current.play();
+                } else {
+                    videoRef.current.pause();
+                }
+            });
+        };
+
+        let observer = new IntersectionObserver(handlePlay, options);
+
+         observer.observe(videoRef.current);
+         return () => observer.disconnect();
+    },[videoRef]);
+
     return (
         <div className={style.post}>
             <div className={style.postInfo}>
@@ -56,7 +83,7 @@ const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, v
                 </div>
             </div>
             <div className={style.video}>
-                <video width="400" controls preload="auto">
+                <video width="400" controls ref={videoRef} poster={cover} loop>
                     <source src={videoUrl}/>
                 </video>
             </div>

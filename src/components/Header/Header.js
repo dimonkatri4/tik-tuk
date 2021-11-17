@@ -12,7 +12,7 @@ const Header = () => {
         <Logo/>
         <div className={style.headerButtons}>
             <NavLink to="/profile" ><FontAwesomeIcon icon={faHome} /></NavLink>
-            <NavLink to="/" ><FontAwesomeIcon icon={faTiktok} /></NavLink>
+            <NavLink to="/trends" ><FontAwesomeIcon icon={faTiktok} /></NavLink>
         </div>
     </header>
 }

@@ -6,10 +6,10 @@ import {NavLink} from "react-router-dom";
 const Logo = () => {
     return (
         <div className={style.logo}>
-            <NavLink to="/" >
+            <NavLink to="/trends" >
                 <img src={logo}/>
             </NavLink>
-            <NavLink to="/" >Tik-Tuk</NavLink>
+            <NavLink to="/trends" >Tik-Tuk</NavLink>
         </div>
     )
 }

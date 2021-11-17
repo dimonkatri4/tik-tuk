@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {requestUsersFeed, requestUsersInfo} from "../../../redux/users-reducer";
 import {compose} from "redux";
 import {useParams} from "react-router-dom";
+import {requestTrendingFeed} from "../../../redux/trending-reducer";
 
 
 const ProfileContainer = (props) => {
@@ -15,8 +16,12 @@ const ProfileContainer = (props) => {
     },[userId])
 
     useEffect(()=> {
-        userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
+        props.requestTrendingFeed()
     },[])
+
+/*    useEffect(()=> {
+        userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
+    },[])*/
 
     return <Profile {...props} />
 }
@@ -24,9 +29,10 @@ const ProfileContainer = (props) => {
 const mapStateToProps = (state) => ({
     profile: state.users.userInfo,
     userFeed: state.users.userFeed,
-    isFetching: state.users.isFetching
+    isFetching: state.users.isFetching,
+    trending: state.trending.trendingFeed
 })
 
 export default compose(
-    connect(mapStateToProps,{requestUsersInfo,requestUsersFeed}),
+    connect(mapStateToProps,{requestUsersInfo,requestUsersFeed,requestTrendingFeed}),
 )(ProfileContainer)
