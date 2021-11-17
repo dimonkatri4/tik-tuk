@@ -12,7 +12,7 @@ const ProfileContainer = (props) => {
 
     useEffect(()=> {
         userId ? props.requestUsersInfo(userId) : props.requestUsersInfo()
-    },[])
+    },[userId])
 
     useEffect(()=> {
         userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()

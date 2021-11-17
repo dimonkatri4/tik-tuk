@@ -13,6 +13,7 @@ const TrendingFeed = ({trending}) => {
     return <div className={style.trendingPage}>
         {
             trending.map(t => <Post
+                key={t.id}
                 avatar={t.authorMeta.avatar}
                 authorName={t.authorMeta.name}
                 nickName={t.authorMeta.nickName}

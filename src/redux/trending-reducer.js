@@ -22,6 +22,7 @@ export const setTrendingFeed = (trendingFeed) => ({type: SET_TRENDING_FEED, tren
 
 export const requestTrendingFeed = () => async (dispatch) => {
     const data = await trendingAPI.getTrendingFeed();
+    if (data.length === 0) {console.error("Empty array")}
     dispatch(setTrendingFeed(data));
 }
 

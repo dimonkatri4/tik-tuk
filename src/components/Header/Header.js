@@ -11,8 +11,8 @@ const Header = () => {
     return <header className="headerPage">
         <Logo/>
         <div className={style.headerButtons}>
-            <NavLink to="/profile" activeClassName={style.active} ><FontAwesomeIcon icon={faHome} /></NavLink>
-            <NavLink to="/" activeClassName={style.active}><FontAwesomeIcon icon={faTiktok} /></NavLink>
+            <NavLink to="/profile" ><FontAwesomeIcon icon={faHome} /></NavLink>
+            <NavLink to="/" ><FontAwesomeIcon icon={faTiktok} /></NavLink>
         </div>
     </header>
 }

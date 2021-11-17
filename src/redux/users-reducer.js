@@ -43,6 +43,7 @@ export const requestUsersFeed = (id) => async (dispatch) => {
 export const requestUsersInfo = (id) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     const data = await userAPI.getUserInfo(id);
+    if (!Object.keys(data).length) {return console.error("Empty array:" + Object.keys(data).length)}
     dispatch(toggleIsFetching(false));
     dispatch(setUsersInfo(data));
 }

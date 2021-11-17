@@ -26,7 +26,3 @@
 .headerButtons a:hover, .logo a:hover {
     color: darkblue;
 }
-
-.headerButtons a.active {
-    color: bisque;
-}
