@@ -3,24 +3,13 @@ import style from "./profile.module.css"
 import CircularProgress from "@mui/material/CircularProgress";
 import Avatar from "@mui/material/Avatar";
 import Pagination from "@mui/material/Pagination";
+import {faPlay} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-const Profile = ({profile, userFeed, isFetching, trending}) => {
+const Profile = ({profile, userFeed, isFetching, trending, errorTrend, errorUser}) => {
 
-
-    let pageSize = 6; //размер подмассива
-    let pageCount = Math.ceil((trending.length+1) / pageSize);
-    let subarray = []; //массив в который будет выведен результат.
-    for (let i = 0; i <Math.ceil(trending.length/pageSize); i++){
-        subarray[i] = trending.slice((i*pageSize), (i*pageSize) + pageSize);
-    }
-    const [page, setPage] = useState(1);
-
-    const handleChange = (event, value) => {
-        setPage(value);
-    }
-
-
+    if (errorTrend || errorUser ) {return alert(`Error: ${errorTrend} ${errorUser}. Reload the page`)}
 
     if (!profile || isFetching) {
         return <div className={style.profileUserInfo}><CircularProgress/></div>
@@ -31,7 +20,8 @@ const Profile = ({profile, userFeed, isFetching, trending}) => {
                 <div className={style.profileAvatar}>
                     <Avatar
                         src={profile.user.avatarMedium}
-                        sx={{width: 150, height: 150}}
+                        sx={{width: "12vw", height: "12vw"}}
+
                     />
                 </div>
                 <div className={style.userInfo}>
@@ -45,27 +35,43 @@ const Profile = ({profile, userFeed, isFetching, trending}) => {
                 </div>
             </div>
             {!trending ? <CircularProgress/> :
-                <div>
-                <div className={style.profilePosts}>
-                    {subarray[page-1].map(t => <ProfilePost
-                        videoUrl={t.videoUrl}
-                        cover={t.covers.default}
-                    />)}
-                </div>
-                    <Pagination count={pageCount} page={page} onChange={handleChange} />
-                </div>
+                <UserPosts trending={trending}/>
             }
 
         </div>
     )
 }
 
-const ProfilePost = ({videoUrl, cover,trending}) => {
-    return (
 
-            <video controls loop poster={cover} className={style.video}>
-                <source src={videoUrl}/>
-            </video>
+const UserPosts = ({trending}) => {
+
+    let pageSize = 6;
+    let subarray = []; //array with broken subarrays
+    let pageCount = Math.ceil(trending.length / pageSize);
+    for (let i = 0; i < Math.ceil(trending.length / pageSize); i++) {
+        subarray[i] = trending.slice((i * pageSize), (i * pageSize) + pageSize);
+    }
+    const [page, setPage] = useState(1);
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    }
+
+    return (
+        <div>
+            <div className={style.profilePosts}>
+                {subarray[page - 1].map(p => (
+                    <div className={style.postItem} key={p.id}>
+                        <span><FontAwesomeIcon icon={faPlay}/> {p.playCount}</span>
+                    <video controls loop poster={p.covers.default} className={style.video} key={p.id}>
+                        <source src={p.videoUrl}/>
+                    </video>
+                    </div>
+                ))}
+            </div>
+            <Pagination count={pageCount} page={page} onChange={handleChange} className={style.pagination}/>
+        </div>
+
     )
 }
 

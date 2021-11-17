@@ -1,5 +1,5 @@
 .logo img {
-    width: 50px;
+    width: 4vw;
     cursor: pointer;
 }
 .logo {
@@ -14,11 +14,12 @@
     text-decoration: none;
     color: black;
     padding-right: 5px;
+    font-size: 2.2vw;
 }
 
 
 .headerButtons a {
-    font-size: 18pt;
+    font-size: 2vw;
     color: black;
     padding-right: 20px;
 }

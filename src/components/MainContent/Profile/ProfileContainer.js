@@ -13,11 +13,11 @@ const ProfileContainer = (props) => {
 
     useEffect(()=> {
         userId ? props.requestUsersInfo(userId) : props.requestUsersInfo()
-    },[userId])
+    },[userId,props.errorUser])
 
     useEffect(()=> {
         props.requestTrendingFeed()
-    },[])
+    },[props.errorTrend])
 
 /*    useEffect(()=> {
         userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
@@ -30,7 +30,9 @@ const mapStateToProps = (state) => ({
     profile: state.users.userInfo,
     userFeed: state.users.userFeed,
     isFetching: state.users.isFetching,
-    trending: state.trending.trendingFeed
+    trending: state.trending.trendingFeed,
+    errorTrend: state.trending.error,
+    errorUser: state.users.requestError
 })
 
 export default compose(

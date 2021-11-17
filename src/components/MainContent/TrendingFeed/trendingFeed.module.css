@@ -28,10 +28,12 @@
 .postText {
     width: 24vw;
     font-weight: 700;
+    font-size: 1.2vw;
 }
 .musicInfo {
     width: 15vw;
     font-weight: 400;
+    font-size: 1.2vw;
 }
 .post {
     margin-bottom: 30px;
@@ -40,4 +42,16 @@
 }
 .video {
     text-align: center;
+}
+.video video {
+    width: 30vw;
+}
+.actionBar {
+    display: flex;
+    justify-content: center;
+    padding: 10px
+}
+.actionBar .item {
+    padding: 0 2.5vw;
+    font-size: 1.5vw
 }

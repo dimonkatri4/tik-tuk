@@ -4,10 +4,12 @@ import Avatar from "@mui/material/Avatar";
 import CircularProgress from "@mui/material/CircularProgress";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMusic} from "@fortawesome/free-solid-svg-icons";
+import {faMusic, faHeart, faComment, faShare} from "@fortawesome/free-solid-svg-icons";
 
 
-const TrendingFeed = ({trending}) => {
+const TrendingFeed = ({trending,error}) => {
+
+    if (error) {return alert(`Error: ${error}. Reload the page`)}
 
     if (!trending) {
         return <div><CircularProgress/></div>
@@ -25,13 +27,19 @@ const TrendingFeed = ({trending}) => {
                 videoUrl={t.videoUrl}
                 userId={t.authorMeta.id}
                 cover={t.covers.default}
+                shareCount={t.shareCount}
+                commentCount={t.commentCount}
+                diggCount={t.diggCount}
             />)
         }
     </div>
 }
 
 
-const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, videoUrl, userId, cover}) => {
+const Post = ({avatar, authorName, nickName, postText,
+                  musicName, musicAuthor, videoUrl, userId, cover,
+                  shareCount,commentCount,diggCount
+              }) => {
 
     const videoRef = useRef(null);
 
@@ -63,7 +71,7 @@ const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, v
                     <Link to={"/profile/" + userId}>
                         <Avatar
                             src={avatar}
-                            sx={{width: 75, height: 75}}
+                            sx={{width: "5vw", height: "5vw"}}
                         />
                     </Link>
                 </div>
@@ -83,9 +91,14 @@ const Post = ({avatar, authorName, nickName, postText, musicName, musicAuthor, v
                 </div>
             </div>
             <div className={style.video}>
-                <video width="400" controls ref={videoRef} poster={cover} loop>
+                <video controls ref={videoRef} poster={cover} loop >
                     <source src={videoUrl}/>
                 </video>
+            </div>
+            <div className={style.actionBar}>
+                <div className={style.item}><FontAwesomeIcon icon={faHeart}/> {diggCount}</div>
+                <div className={style.item}><FontAwesomeIcon icon={faComment}/> {commentCount}</div>
+                <div className={style.item}><FontAwesomeIcon icon={faShare}/> {shareCount}</div>
             </div>
         </div>
     )

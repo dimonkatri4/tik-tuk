@@ -13,7 +13,8 @@ const TrendingFeedContainer = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    trending: state.trending.trendingFeed
+    trending: state.trending.trendingFeed,
+    error: state.trending.error
 })
 
 export default connect(mapStateToProps,{requestTrendingFeed})(TrendingFeedContainer)

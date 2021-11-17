@@ -1,9 +1,11 @@
 import {trendingAPI} from "../api/api";
 
-const SET_TRENDING_FEED = '/trending/SET_TRENDING_FEED'
+const SET_TRENDING_FEED = '/trending/SET_TRENDING_FEED';
+const SET_ERROR = '/trending/SET_ERROR';
 
 let initialState = {
-    trendingFeed: null
+    trendingFeed: null,
+    error: null
 }
 
 const trendingReducer = (state = initialState, action) => {
@@ -12,18 +14,26 @@ const trendingReducer = (state = initialState, action) => {
             return {
                 ...state, trendingFeed: action.trendingFeed
             }
+        case SET_ERROR:
+            return {
+                ...state, error: action.error
+            }
         default:
             return state
     }
 }
 
-export const setTrendingFeed = (trendingFeed) => ({type: SET_TRENDING_FEED, trendingFeed})
+export const setTrendingFeed = (trendingFeed) => ({type: SET_TRENDING_FEED, trendingFeed});
+export const setError = (error) => ({type: SET_ERROR, error});
 
 
 export const requestTrendingFeed = () => async (dispatch) => {
+    try {
     const data = await trendingAPI.getTrendingFeed();
-    if (data.length === 0) {console.error("Empty array")}
-    dispatch(setTrendingFeed(data));
+    if (data.length === 0) {setError("Empty array trending feed")}
+    dispatch(setTrendingFeed(data));} catch(err) {
+        setError(err)
+    }
 }
 
 export default trendingReducer
