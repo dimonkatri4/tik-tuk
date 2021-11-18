@@ -5,11 +5,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMusic, faHeart, faComment, faShare} from "@fortawesome/free-solid-svg-icons";
+import Error from "../../Error/Error";
 
 
 const TrendingFeed = ({trending,error}) => {
 
-    if (error) {return alert(`Error: ${error}. Reload the page`)}
+    if (error) {return  <Error errors={error}/>}
 
     if (!trending) {
         return <div><CircularProgress/></div>

@@ -29,7 +29,7 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_REQUEST_ERROR:
             return {
-                ...state,isFetching: action.isFetching
+                ...state,requestError: action.error
             }
         default:
             return state
@@ -59,10 +59,11 @@ export const requestUsersInfo = (id) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     try{
     const data = await userAPI.getUserInfo(id);
-    if (!Object.keys(data).length) {setRequestError("Empty object in userInfo")}
+    if (!Object.keys(data).length) { dispatch(setRequestError("Empty object in userInfo"))}
     dispatch(toggleIsFetching(false));
-    dispatch(setUsersInfo(data));} catch (error) {
-        setRequestError(error)
+    dispatch(setUsersInfo(data));}
+    catch (error) {
+        dispatch(setRequestError(error.response.data.message))
     }
 }
 

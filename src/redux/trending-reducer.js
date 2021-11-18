@@ -30,9 +30,9 @@ export const setError = (error) => ({type: SET_ERROR, error});
 export const requestTrendingFeed = () => async (dispatch) => {
     try {
     const data = await trendingAPI.getTrendingFeed();
-    if (data.length === 0) {setError("Empty array trending feed")}
+    if (data.length === 0) {dispatch(setError("Empty array trending feed"))}
     dispatch(setTrendingFeed(data));} catch(err) {
-        setError(err)
+        dispatch(setError(err.response.data.message));
     }
 }
 

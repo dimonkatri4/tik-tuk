@@ -1,0 +1,8 @@
+.errorBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.errorItem {
+    margin-bottom: 15px;
+}

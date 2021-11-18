@@ -5,11 +5,12 @@ import Avatar from "@mui/material/Avatar";
 import Pagination from "@mui/material/Pagination";
 import {faPlay} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Error from "../../Error/Error";
 
 
 const Profile = ({profile, userFeed, isFetching, trending, errorTrend, errorUser}) => {
 
-    if (errorTrend || errorUser ) {return alert(`Error: ${errorTrend} ${errorUser}. Reload the page`)}
+    if (errorTrend || errorUser ) { return <Error errors={[errorTrend,errorUser]} /> }
 
     if (!profile || isFetching) {
         return <div className={style.profileUserInfo}><CircularProgress/></div>

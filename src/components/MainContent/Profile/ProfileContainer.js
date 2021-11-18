@@ -13,11 +13,11 @@ const ProfileContainer = (props) => {
 
     useEffect(()=> {
         userId ? props.requestUsersInfo(userId) : props.requestUsersInfo()
-    },[userId,props.errorUser])
+    },[userId])
 
     useEffect(()=> {
         props.requestTrendingFeed()
-    },[props.errorTrend])
+    },[])
 
 /*    useEffect(()=> {
         userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
