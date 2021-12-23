@@ -1,20 +1,43 @@
-import React, {useEffect} from "react";
-import TrendingFeed from "./TrendingFeed";
-import {connect} from "react-redux";
-import {requestTrendingFeed} from "../../../redux/trending-reducer";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import TrendingFeed from './TrendingFeed';
+import { requestTrendingFeed } from '../../../redux/trending-reducer';
 
-const TrendingFeedContainer = (props) => {
-
+const TrendingFeedContainer = function ({
+    requestTrendingFeed,
+    trending,
+    error,
+}) {
     useEffect(() => {
-        props.requestTrendingFeed();
-    }, [])
+        requestTrendingFeed();
+    }, []);
 
-    return <TrendingFeed {...props} />
-}
+    return (
+        <TrendingFeed
+            requestTrendingFeed={requestTrendingFeed}
+            trending={trending}
+            error={error}
+        />
+    );
+};
 
 const mapStateToProps = (state) => ({
     trending: state.trending.trendingFeed,
-    error: state.trending.error
-})
+    error: state.trending.error,
+});
 
-export default connect(mapStateToProps,{requestTrendingFeed})(TrendingFeedContainer)
+TrendingFeedContainer.propTypes = {
+    requestTrendingFeed: PropTypes.func.isRequired,
+    trending: PropTypes.array,
+    error: PropTypes.string,
+};
+
+TrendingFeedContainer.defaultProps = {
+    trending: [],
+    error: '',
+};
+
+export default connect(mapStateToProps, { requestTrendingFeed })(
+    TrendingFeedContainer
+);
