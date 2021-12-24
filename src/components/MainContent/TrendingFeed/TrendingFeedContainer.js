@@ -4,22 +4,12 @@ import PropTypes from 'prop-types';
 import TrendingFeed from './TrendingFeed';
 import { requestTrendingFeed } from '../../../redux/trending-reducer';
 
-const TrendingFeedContainer = function ({
-    requestTrendingFeed,
-    trending,
-    error,
-}) {
+const TrendingFeedContainer = function ({ requestTrendingFeed, trending, error }) {
     useEffect(() => {
         requestTrendingFeed();
     }, []);
 
-    return (
-        <TrendingFeed
-            requestTrendingFeed={requestTrendingFeed}
-            trending={trending}
-            error={error}
-        />
-    );
+    return <TrendingFeed trending={trending} error={error} />;
 };
 
 const mapStateToProps = (state) => ({
@@ -38,6 +28,4 @@ TrendingFeedContainer.defaultProps = {
     error: '',
 };
 
-export default connect(mapStateToProps, { requestTrendingFeed })(
-    TrendingFeedContainer
-);
+export default connect(mapStateToProps, { requestTrendingFeed })(TrendingFeedContainer);

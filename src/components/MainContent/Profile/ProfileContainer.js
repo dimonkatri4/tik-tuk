@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-    requestUsersFeed,
-    requestUsersInfo,
-} from '../../../redux/users-reducer';
+import { requestUsersFeed, requestUsersInfo } from '../../../redux/users-reducer';
 import Profile from './Profile';
 import { requestTrendingFeed } from '../../../redux/trending-reducer';
 
@@ -28,6 +25,11 @@ const ProfileContainer = function ({
     useEffect(() => {
         requestTrendingFeed();
     }, []);
+
+    // In case the data came from the server correctly
+    /*    useEffect(()=> {
+        userId ? props.requestUsersFeed(userId) : props.requestUsersFeed()
+    },[]) */
 
     return (
         <Profile

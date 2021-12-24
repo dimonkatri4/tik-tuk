@@ -6,13 +6,7 @@ import style from './profile.module.css';
 import Error from '../../Error/Error';
 import UserPosts from './UserPosts';
 
-const Profile = function ({
-    profile,
-    isFetching,
-    trending,
-    errorTrend,
-    errorUser,
-}) {
+const Profile = function ({ profile, isFetching, trending, errorTrend, errorUser }) {
     if (errorTrend || errorUser) {
         return <Error errors={[errorTrend, errorUser]} />;
     }
@@ -34,12 +28,8 @@ const Profile = function ({
                     />
                 </div>
                 <div className={style.userInfo}>
-                    <div className={style.nickname}>
-                        {profile.user.nickname}
-                    </div>
-                    <div className={style.signature}>
-                        {profile.user.signature}
-                    </div>
+                    <div className={style.nickname}>{profile.user.nickname}</div>
+                    <div className={style.signature}>{profile.user.signature}</div>
                     <div className={style.status}>
                         <div>
                             <span>{profile.stats.followingCount} </span>
@@ -56,11 +46,7 @@ const Profile = function ({
                     </div>
                 </div>
             </div>
-            {!trending ? (
-                <CircularProgress />
-            ) : (
-                <UserPosts trending={trending} />
-            )}
+            {!trending ? <CircularProgress /> : <UserPosts trending={trending} />}
         </div>
     );
 };

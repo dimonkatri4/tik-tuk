@@ -2,12 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faMusic,
-    faHeart,
-    faComment,
-    faShare,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMusic, faHeart, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import style from './trendingFeed.module.css';
 
@@ -53,18 +48,12 @@ const Post = function ({
             <div className={style.postInfo}>
                 <div className={style.authorPhoto}>
                     <Link to={`/profile/${userId}`}>
-                        <Avatar
-                            src={avatar}
-                            sx={{ width: '5vw', height: '5vw' }}
-                        />
+                        <Avatar src={avatar} sx={{ width: '5vw', height: '5vw' }} />
                     </Link>
                 </div>
                 <div>
                     <div>
-                        <Link
-                            to={`/profile/${userId}`}
-                            className={style.authorName}
-                        >
+                        <Link to={`/profile/${userId}`} className={style.authorName}>
                             <span>{authorName} </span>
                         </Link>
                         <span className={style.authorNickName}>{nickName}</span>

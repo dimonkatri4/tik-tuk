@@ -10,14 +10,10 @@ const instance = axios.create({
 });
 export const userAPI = {
     getUserFeed(id = 'dave.xp') {
-        return instance
-            .get(`user/feed/${id}`)
-            .then((response) => response.data);
+        return instance.get(`user/feed/${id}`).then((response) => response.data);
     },
     getUserInfo(id = 'dave.xp') {
-        return instance
-            .get(`user/info/${id}`)
-            .then((response) => response.data);
+        return instance.get(`user/info/${id}`).then((response) => response.data);
     },
 };
 

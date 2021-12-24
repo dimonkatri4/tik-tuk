@@ -1,5 +1,5 @@
 import { userAPI } from '../api/api';
-import userFeedData from '../user-feed.json';
+import userFeedData from '../json/user-feed.json';
 
 const SET_USERS_FEED = '/users/SET_USERS_FEED';
 const SET_USERS_INFO = '/users/SET_USERS_INFO';
@@ -47,6 +47,14 @@ export const toggleIsFetching = (isFetching) => ({
     isFetching,
 });
 export const setRequestError = (error) => ({ type: SET_REQUEST_ERROR, error });
+
+// In case the data came from the server correctly
+/* export const requestUsersFeed = (id) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    const data = await userAPI.getUserFeed(id);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsersFeed(data));
+} */
 
 export const requestUsersFeed = () => (dispatch) => {
     const data = userFeedData;

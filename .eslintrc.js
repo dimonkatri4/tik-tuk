@@ -20,9 +20,6 @@ module.exports = {
         'react/forbid-prop-types': ['off'],
         'default-param-last': ['off'],
         'no-unused-expressions': ['error', { allowTernary: true }],
-        'no-shadow': [
-            'error',
-            { allow: ['requestTrendingFeed', 'requestUsersInfo'] },
-        ],
+        'no-shadow': ['error', { allow: ['requestTrendingFeed', 'requestUsersInfo'] }],
     },
 };
